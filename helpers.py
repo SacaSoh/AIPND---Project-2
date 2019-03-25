@@ -170,11 +170,11 @@ def process_image(image):
     """
     img = Image.open(image)
 
-    # keep shortest side as 250 pixels
+    # keep shortest side as 256 pixels
     if img.size[0] > img.size[1]:
-        img.thumbnail((100000, 256))
+        img.thumbnail((img.size[0], 256))
     else:
-        img.thumbnail((256, 100000))
+        img.thumbnail((256, img.size[1]))
 
     # crop to a 224x224 image
     left_margin = (img.width - 224) / 2
