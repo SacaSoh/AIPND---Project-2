@@ -102,4 +102,9 @@ ENV/
 
 # Pycharm
 .DS_Store
+
+# Project specifics
 .idea
+/.ipynb_checkpoints/
+/flowers/
+/checkpoint*.pth

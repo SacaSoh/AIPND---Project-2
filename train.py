@@ -12,7 +12,7 @@
 #     2. CNN Model Architecture as --arch with default value 'vgg11_bn'
 #     3. Learning rate as --learn_rate with default value "0.001"
 #     4. Number of hidden units (besides hardcoded hidden layers) --hidden_units with default value 700
-#     5. GPU usage (CUDA) as --gpu with default value True
+#     5. Set GPU usage (CUDA) as --gpu
 #     6. Number of epochs to execute the training --epochs with default value 12
 #     7. Number of epochs of traning for each testing pass --print_every with default value 1 (test every epoch)
 
@@ -127,13 +127,14 @@ checkpoint = {'state_dict': best_model_wts,
               'optimizer_state_dict': optimizer.state_dict(),
               'class_to_idx': class_to_idx,
               'arch': in_arg.arch,  # from argparser
+              'hidden_units': in_arg.hidden_units,  # from argparser
               'epoch': epoch}
 
 filepath = in_arg.save_dir + 'checkpoint.pth'
 torch.save(checkpoint, filepath)
 print(f'Checkpoint - best model - saved at: {filepath}')
 
-# print statistics per epoch - zip all stats and present per epoch
+# print statistics per epoch
 print(f'\nStatistics per Epoch:\n')
 for i in range(len(val_acc_history)):
     print(f'epoch {i+1} / {len(val_acc_history)}\n'
